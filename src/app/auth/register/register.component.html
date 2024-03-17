@@ -1,0 +1,94 @@
+<main>
+  <div class="container">
+    <div class="login-box">
+      <form #form="ngForm" (ngSubmit)="register(form)">
+        <h1>Register</h1>
+        <div class="form-group">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            class="form-control"
+            required
+            ngModel
+          />
+          <label for="username">Username</label>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="form-control"
+            required
+            ngModel
+          />
+          <label for="name">Name</label>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="surname"
+            id="surname"
+            class="form-control"
+            required
+            ngModel
+          />
+          <label for="surname">Surname</label>
+        </div>
+        <!-- <div class="form-group dropdown">
+          <select
+            name="genre"
+            id="genre"
+            class="form-control dropdown-toggle"
+            required
+            ngModel
+          >
+            <option value="">Select Genre</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+          <label for="genre">Genre</label>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="city"
+            id="city"
+            class="form-control"
+            required
+            ngModel
+          />
+          <label for="city">City</label>
+        </div> -->
+        <div class="form-group">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="form-control"
+            required
+            ngModel
+          />
+          <label for="email">Email</label>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="form-control"
+            required
+            ngModel
+          />
+          <label for="password">Password</label>
+        </div>
+        <button type="submit" [disabled]="form.invalid" class="btn mt-3">
+          Register
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
