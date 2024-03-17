@@ -1,0 +1,24 @@
+.bg-custom {
+  background-color: #181a1d;
+}
+
+.nav-link {
+  color: rgb(163, 163, 163);
+  font-size: 1rem;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.nav-link.active {
+  color: white;
+}
+
+.navbar-toggler {
+  filter: invert(1);
+
+  &:focus {
+    box-shadow: none;
+  }
+}
