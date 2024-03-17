@@ -11,10 +11,25 @@ import { WorksComponent } from './components/works/works.component';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { WorkDetailsComponent } from './components/work-details/work-details.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'works', component: WorksComponent },
+  {
+    path: 'details/:id',
+    component: WorkDetailsComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
   { path: '**', redirectTo: '' },
 ];
 
@@ -26,6 +41,9 @@ const routes: Routes = [
     WorksComponent,
     LoginComponent,
     RegisterComponent,
+    ContactUsComponent,
+    EditProfileComponent,
+    WorkDetailsComponent,
   ],
   imports: [
     BrowserModule,
