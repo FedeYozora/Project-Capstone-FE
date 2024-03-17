@@ -1,0 +1,44 @@
+<div
+  class="container-fluid"
+  style="height: calc(100vh - 86px); overflow-y: auto"
+>
+  <div class="container d-flex flex-column">
+    <div class="row">
+      <div class="col text-center">
+        <div class="input-icons">
+          <input
+            #search
+            placeholder="Search a work!"
+            (keyup)="searchWorks(search.value)"
+            class="input-field"
+          /><i class="bi bi-search icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 mb-3 g-4" *ngFor="let work of works">
+        <div class="card shadowHover shadow">
+          <img src="{{ work.image }}" class="card-img-top" alt="..." />
+          <div class="card-header headHeight">
+            <h5 class="text-truncate">{{ work.name }}</h5>
+          </div>
+          <div class="card-body d-flex-colomn height pb-0">
+            <p class="card-text text-truncate mb-4">{{ work.description }}.</p>
+            <div class="d-flex justify-content-end">
+              <a
+                [routerLink]="['/details', work.id]"
+                class="btn brown-btn me-4 mb-2 shadow"
+                >Details</a
+              >
+              <a
+                [routerLink]="['/edit', work.id]"
+                class="btn beige-btn mb-2 shadow"
+                >Edit</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
