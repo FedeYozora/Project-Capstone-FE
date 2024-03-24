@@ -1,0 +1,31 @@
+.container {
+  margin-top: 86px;
+  color: #512918;
+}
+h2 {
+  font-weight: 700;
+}
+.btn-brown {
+  background-color: #512918;
+  color: antiquewhite;
+  border-radius: 15px;
+}
+.btn-brown:hover {
+  background-color: #79432b;
+}
+.btn-beige {
+  background-color: #b37f52;
+  color: antiquewhite;
+  border-radius: 15px;
+}
+.btn-beige:hover {
+  background-color: #d19f73;
+}
+label {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+input:focus {
+  border-color: #512918;
+  box-shadow: none;
+}
