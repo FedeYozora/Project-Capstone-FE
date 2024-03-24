@@ -1,0 +1,36 @@
+.container {
+  color: #512918;
+}
+
+h1 {
+  padding-top: 40px;
+  font-weight: 700;
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+textarea {
+  resize: none;
+}
+.date {
+  margin-left: 15px;
+}
+input:focus,
+textarea:focus {
+  border-color: #512918;
+  box-shadow: none;
+}
+
+button,
+button:disabled {
+  border-radius: 15px;
+  background-color: #512918;
+  color: #fae8d2;
+}
+
+button:hover {
+  background-color: #704938;
+  color: #fae8d2;
+}
