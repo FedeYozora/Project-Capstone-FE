@@ -1,6 +1,10 @@
 <div
   class="container-fluid"
-  style="height: calc(100vh - 86px); overflow-y: auto"
+  style="
+    height: calc(100vh - 72px);
+    overflow-y: auto;
+    background-color: antiquewhite;
+  "
 >
   <div class="container d-flex flex-column">
     <div class="row">
@@ -13,24 +17,43 @@
             class="input-field"
           /><i class="bi bi-search icon"></i>
         </div>
+        <a
+          *ngIf="userIsAdmin === true"
+          routerLink="/newWork"
+          class="btn brown-btn mb-2 shadow"
+          ><span><i class="bi bi-plus-circle me-2"></i></span>New Work</a
+        >
       </div>
     </div>
     <div class="row">
       <div class="col-md-3 mb-3 g-4" *ngFor="let work of works">
         <div class="card shadowHover shadow">
-          <img src="{{ work.image }}" class="card-img-top" alt="..." />
+          <img
+            src="{{ work.image }}"
+            class="card-img-top"
+            style="height: 250px; object-fit: cover"
+            alt="..."
+          />
           <div class="card-header headHeight">
-            <h5 class="text-truncate">{{ work.name }}</h5>
+            <h3 class="text-truncate">{{ work.name }}</h3>
           </div>
-          <div class="card-body d-flex-colomn height pb-0">
-            <p class="card-text text-truncate mb-4">{{ work.description }}.</p>
+          <div class="card-body cream d-flex-colomn height pb-0">
+            <p class="card-text text-truncate mb-5">{{ work.description }}.</p>
             <div class="d-flex justify-content-end">
               <a
                 [routerLink]="['/details', work.id]"
-                class="btn brown-btn me-4 mb-2 shadow"
+                class="btn brown-btn me-2 mb-2 shadow"
                 >Details</a
               >
               <a
+                [routerLink]="['/details', work.id]"
+                class="btn brown-btn me-2 mb-2 shadow"
+              >
+                <i class="fas fa-comments me-2"></i>
+                <span>{{ work.comments.length }}</span>
+              </a>
+              <a
+                *ngIf="userIsAdmin === true"
                 [routerLink]="['/edit', work.id]"
                 class="btn beige-btn mb-2 shadow"
                 >Edit</a
