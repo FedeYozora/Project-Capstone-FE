@@ -2,7 +2,14 @@
   class="navbar navbar-expand-md bg-custom px-3 py-3 border-bottom border-white"
 >
   <div class="container-fluid">
-    <a class="navbar-brand text-white" href="#">Antonio Simonetti</a>
+    <a class="navbar-brand text-white" href="#">
+      <img
+        src="../../../assets/IMG/WhatsApp Image 2024-03-22 at 22.35.24 (1).png"
+        class="navbarLogo me-2"
+        alt=""
+        srcset=""
+      />Antonio Simonetti</a
+    >
 
     <div class="d-flex gap-2">
       <button
@@ -34,22 +41,21 @@
             Works</a
           >
           <a
-            class="nav-link"
-            [routerLink]="['/contacts']"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            Contact us</a
-          >
-          <a
             *ngIf="userLoggedIn"
             class="nav-link"
-            [routerLink]="['/user']"
+            [routerLink]="['/profile']"
             routerLinkActive="active"
           >
-            User</a
+            Edit Profile</a
           >
           <div class="flex-grow-1"></div>
+          <a
+            *ngIf="!userIsAdmin"
+            class="nav-link me-4 rainbow-text shadow"
+            [routerLink]="['/admin']"
+            routerLinkActive="active"
+            >ADMIN</a
+          >
           <a
             *ngIf="!userLoggedIn"
             class="nav-link"

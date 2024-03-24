@@ -1,5 +1,5 @@
 .bg-custom {
-  background-color: #181a1d;
+  background-color: #512918;
 }
 
 .nav-link {
@@ -9,6 +9,38 @@
   &:hover {
     color: white;
   }
+}
+
+.rainbow-text {
+  background-image: linear-gradient(
+    to right,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet
+  );
+  background-size: 200% 100%;
+  color: transparent;
+  display: inline-block;
+  animation: rainbow-animation 2s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes rainbow-animation {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+.navbarLogo {
+  height: 29px;
 }
 
 .nav-link.active {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, throwError, tap, catchError } from 'rxjs';
 import { RegisterData } from '../models/register-data';
@@ -47,10 +47,28 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
+  updateUserInfo(updatedInfo: any) {
+    const token = localStorage.getItem('user');
+    let headers = new HttpHeaders();
+    if (token) {
+      const tokenParsed = JSON.parse(token).accessToken;
+      headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
+    }
+    return this.http
+      .put(`${this.baseUrl}/users/me`, updatedInfo, {
+        headers,
+      })
+      .pipe(
+        tap(() => {
+          this.user$ = { ...updatedInfo };
+        }),
+        catchError(this.errors)
+      );
+  }
+
   restore() {
     const user = localStorage.getItem('user');
     if (!user) {
-      // this.router.navigate(['/login']);
       return;
     }
     const userData: AuthData = JSON.parse(user);
@@ -59,11 +77,8 @@ export class AuthService {
       return;
     }
     this.authSubj.next(userData);
-    // Rientrando nell'applicazione dopo essere usciti, il BehaviourSubject è di nuovo null: in questo modo riceve i valori presenti nel localStorage e comunica di nuovo a user$ la presenza dell'utente
-    console.log('User esiste, restore eseguito');
   }
 
-  //DA CONTROLLARE LA GESTIONE ERRORI
   private errors(err: any) {
     console.log(err);
     switch (err.error) {
