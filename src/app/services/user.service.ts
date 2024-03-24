@@ -11,6 +11,16 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  getUser(): Observable<any> {
+    const token = localStorage.getItem('user');
+    let headers = new HttpHeaders();
+    if (token) {
+      const tokenParsed = JSON.parse(token).accessToken;
+      headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
+    }
+    return this.http.get<any>(`${this.apiUrl}/me`, { headers });
+  }
+
   getUsers(): Observable<any> {
     const token = localStorage.getItem('user');
     let headers = new HttpHeaders();
@@ -31,12 +41,10 @@ export class UserService {
 
     return this.http.get<any>(`${this.apiUrl}/me`, { headers }).pipe(
       map((response) => {
-        for (let i = 0; i < response.roles.length; i++) {
-          const element = response.roles[i].role;
-          if (element === 'ADMIN') {
-            return element;
-          } else return;
-        }
+        const element = response.role;
+        if (element === 'ADMIN') {
+          return element;
+        } else return;
       })
     );
   }
@@ -78,5 +86,18 @@ export class UserService {
       headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
     }
     return this.http.delete(`${this.apiUrl}/${id}`, { headers });
+  }
+
+  uploadImage(data: any): Observable<any> {
+    const token = localStorage.getItem('user');
+    let headers = new HttpHeaders();
+    if (token) {
+      const tokenParsed = JSON.parse(token).accessToken;
+      headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
+    }
+    return this.http.patch(`${this.apiUrl}/me/uploadAvatar`, data, {
+      headers,
+      responseType: 'text',
+    });
   }
 }

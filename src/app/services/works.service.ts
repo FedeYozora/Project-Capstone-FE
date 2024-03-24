@@ -11,22 +11,63 @@ export class WorksService {
 
   constructor(private http: HttpClient) {}
 
-  getWorks(): Observable<any> {
-    return this.http.get(this.apiUrl);
+  getWorks(page: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}?page=${page}`);
   }
   getWork(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
 
-  createWork(post: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, post);
+  getWorkByCommentId(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/comments/${id}`);
   }
 
-  updateWork(id: number, post: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, post);
+  createWork(work: any): Observable<any> {
+    const token = localStorage.getItem('user');
+    let headers = new HttpHeaders();
+    if (token) {
+      const tokenParsed = JSON.parse(token).accessToken;
+      headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
+    }
+    return this.http.post(`${this.apiUrl}`, work, {
+      headers,
+    });
   }
 
-  deletePost(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  updateWork(id: number, work: any): Observable<any> {
+    const token = localStorage.getItem('user');
+    let headers = new HttpHeaders();
+    if (token) {
+      const tokenParsed = JSON.parse(token).accessToken;
+      headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
+    }
+    return this.http.put(`${this.apiUrl}/${id}`, work, {
+      headers,
+    });
+  }
+
+  uploadImage(data: any): Observable<any> {
+    const token = localStorage.getItem('user');
+    let headers = new HttpHeaders();
+    if (token) {
+      const tokenParsed = JSON.parse(token).accessToken;
+      headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
+    }
+    return this.http.post(`${this.apiUrl}/uploadAvatar`, data, {
+      headers,
+      responseType: 'text',
+    });
+  }
+
+  deleteWork(id: number): Observable<any> {
+    const token = localStorage.getItem('user');
+    let headers = new HttpHeaders();
+    if (token) {
+      const tokenParsed = JSON.parse(token).accessToken;
+      headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
+    }
+    return this.http.delete(`${this.apiUrl}/${id}`, {
+      headers,
+    });
   }
 }

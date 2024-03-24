@@ -4,4 +4,5 @@ export interface Comment {
   workId: number;
   userId: number;
   createdAt: Date;
+  commentStatus: 'HIDDEN' | 'VISIBLE';
 }
