@@ -27,10 +27,12 @@ export class WorksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getWorks();
     this.canActivate().subscribe((isAdmin) => {
       if (isAdmin) {
         this.userIsAdmin = true;
+        this.getWorks();
+      } else {
+        this.getWorksVisibleComments();
       }
     });
   }
@@ -39,6 +41,14 @@ export class WorksComponent implements OnInit {
     this.worksService.getWorks(this.page).subscribe((response: any) => {
       this.works = response.content;
     });
+  }
+
+  getWorksVisibleComments(): void {
+    this.worksService
+      .getWorksVisibleComments(this.page)
+      .subscribe((response: any) => {
+        this.works = response.content;
+      });
   }
 
   searchWorks(searchValue: string): void {

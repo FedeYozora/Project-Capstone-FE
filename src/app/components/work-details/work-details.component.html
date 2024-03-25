@@ -31,6 +31,7 @@
     <!-- COMMENTI-->
     <div
       class="containerComments d-flex justify-content-center align-items-center"
+      *ngIf="userLogged != false"
     >
       <form (ngSubmit)="createComment(commentForm)">
         <input
@@ -62,13 +63,18 @@
             <h4>{{ comment.author }}</h4>
           </div>
           <div class="col-md">
-            <p>{{ comment.content }}</p>
-            <p>{{ comment.createdAt }}</p>
+            <div
+              class="d-flex flex-column justify-content-around"
+              style="display: flex; flex-direction: column; height: 100%"
+            >
+              <p>{{ comment.content }}</p>
+              <p>{{ comment.createdAt }}</p>
+            </div>
           </div>
           <div *ngIf="userIsAdmin === true" class="col-md-1">
             <h3>Comment Status: {{ comment.commentStatus }}</h3>
           </div>
-          <div class="col-md-1">
+          <div class="col-md-1" *ngIf="userIsAdmin === true">
             <button
               *ngIf="comment.commentStatus === 'HIDDEN'"
               (click)="toggleCommentStatus(comment)"
@@ -84,7 +90,7 @@
               <i class="bi bi-eye-slash-fill"></i>
             </button>
           </div>
-          <div class="col-md-1">
+          <div class="col-md-1" *ngIf="userIsAdmin === true">
             <button
               (click)="deleteComment(comment.id)"
               class="btn btn-danger mt-2 shadow"

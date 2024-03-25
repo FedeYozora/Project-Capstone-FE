@@ -4,7 +4,7 @@ import { CommentsService } from 'src/app/services/comments.service';
 import { WorksService } from 'src/app/services/works.service';
 import { UserService } from 'src/app/services/user.service';
 import { Comment } from 'src/app/models/comment';
-import { Observable, map, switchMap } from 'rxjs';
+import { Observable, map, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-work-details',
@@ -12,9 +12,9 @@ import { Observable, map, switchMap } from 'rxjs';
   styleUrls: ['./work-details.component.scss'],
 })
 export class WorkDetailsComponent implements OnInit {
-  currentUser: any;
   work: any | undefined;
   comments!: any;
+  userLogged!: boolean;
   userIsAdmin!: boolean;
   commentForm: Comment = {
     workId: Number(this.route.snapshot.params['id']),
@@ -33,6 +33,7 @@ export class WorkDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.IsLogged();
     this.route.paramMap
       .pipe(
         switchMap((params) => {
@@ -68,13 +69,20 @@ export class WorkDetailsComponent implements OnInit {
     return this.userSrv.isAdmin();
   }
 
+  IsLogged(): Observable<boolean> {
+    this.userSrv.getValidUser().subscribe((isValid) => {
+      this.userLogged = isValid;
+    });
+    return of(this.userLogged);
+  }
+
   createComment(comment: Comment) {
     let utente = this.userSrv.getValidUser();
     if (utente) {
+      this.commentSrv.createComment(comment).subscribe(() => {
+        this.getComments(this.commentForm.workId);
+      });
     }
-    this.commentSrv.createComment(comment).subscribe(() => {
-      this.getComments(this.commentForm.workId);
-    });
   }
 
   getComments(workId: number): void {
