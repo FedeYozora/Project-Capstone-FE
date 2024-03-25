@@ -31,22 +31,24 @@ export class UserService {
     return this.http.get(this.apiUrl, { headers });
   }
 
-  isAdmin(): Observable<boolean> {
+  isAdmin(): Observable<any> {
     const token = localStorage.getItem('user');
     let headers = new HttpHeaders();
     if (token) {
       const tokenParsed = JSON.parse(token).accessToken;
       headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
-    }
 
-    return this.http.get<any>(`${this.apiUrl}/me`, { headers }).pipe(
-      map((response) => {
-        const element = response.role;
-        if (element === 'ADMIN') {
-          return element;
-        } else return;
-      })
-    );
+      return this.http.get<any>(`${this.apiUrl}/me`, { headers }).pipe(
+        map((response) => {
+          const element = response.role;
+          if (element === 'ADMIN') {
+            return element;
+          } else return;
+        })
+      );
+    } else {
+      return of(null);
+    }
   }
 
   getValidUser(): Observable<any> {
@@ -59,16 +61,16 @@ export class UserService {
         map((response) => {
           // check if the token is still valid, for example by checking the expiration date
           if (this.isTokenValid(response)) {
-            return response;
+            return true;
           } else {
             // token is not valid, remove it from local storage
             localStorage.removeItem('user');
-            return null;
+            return of(false);
           }
         })
       );
     } else {
-      return of(null);
+      return of(false);
     }
   }
 

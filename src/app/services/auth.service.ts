@@ -35,7 +35,7 @@ export class AuthService {
         this.accessToken = dataLogin;
         localStorage.setItem('user', JSON.stringify(dataLogin));
         console.log('Login effettuato');
-        this.router.navigate(['/']);
+        window.location.href = '/';
       }),
       catchError(this.errors)
     );

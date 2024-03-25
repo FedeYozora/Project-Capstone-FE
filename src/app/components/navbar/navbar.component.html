@@ -50,7 +50,7 @@
           >
           <div class="flex-grow-1"></div>
           <a
-            *ngIf="!userIsAdmin"
+            *ngIf="userIsAdmin == true"
             class="nav-link me-4 rainbow-text shadow"
             [routerLink]="['/admin']"
             routerLinkActive="active"
