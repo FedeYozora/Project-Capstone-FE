@@ -71,7 +71,9 @@ export class WorkDetailsComponent implements OnInit {
 
   IsLogged(): Observable<boolean> {
     this.userSrv.getValidUser().subscribe((isValid) => {
-      this.userLogged = isValid;
+      if (isValid) {
+        this.userLogged = true;
+      }
     });
     return of(this.userLogged);
   }

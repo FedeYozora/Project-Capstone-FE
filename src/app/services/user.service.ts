@@ -59,11 +59,9 @@ export class UserService {
       headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
       return this.http.get<any>(`${this.apiUrl}/me`, { headers }).pipe(
         map((response) => {
-          // check if the token is still valid, for example by checking the expiration date
-          if (this.isTokenValid(response)) {
+          if (response) {
             return true;
           } else {
-            // token is not valid, remove it from local storage
             localStorage.removeItem('user');
             return of(false);
           }
@@ -72,12 +70,6 @@ export class UserService {
     } else {
       return of(false);
     }
-  }
-
-  isTokenValid(user: any): boolean {
-    // check the expiration date of the token
-    const expirationDate = user.exp;
-    return Date.now() < expirationDate;
   }
 
   removeUser(id: string) {
