@@ -520,3 +520,28 @@ html {
     width: 95% !important;
   }
 }
+
+.carousel-item img {
+  max-height: 600px;
+  object-fit: cover;
+}
+
+.carousel-item {
+  background-color: antiquewhite;
+  color: white;
+}
+
+.carousel-caption {
+  color: white;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: antiquewhite;
+  filter: invert(1);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1);
+}

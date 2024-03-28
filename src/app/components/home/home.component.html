@@ -1,7 +1,7 @@
 <body
   id="page-top"
   style="
-    height: calc(100vh - 72px);
+    height: calc(100vh - 71px);
     overflow-y: auto;
     background-color: antiquewhite;
   "
@@ -31,6 +31,73 @@
     </div>
   </header>
   <!-- Featured Section-->
+  <section class="page-section portfolio" id="portfolio">
+    <div class="container">
+      <h2
+        class="page-section-heading text-center text-uppercase text-secondary mb-0"
+      >
+        Featured Works
+      </h2>
+      <!-- Icon Divider-->
+      <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+        <div class="divider-custom-line"></div>
+      </div>
+      <div
+        id="carouselExampleCaptions"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-indicators">
+          <button
+            *ngFor="let work of works; let i = index"
+            type="button"
+            [attr.data-bs-target]="'#carouselExampleCaptions'"
+            [attr.data-bs-slide-to]="i"
+            [class.active]="i === 0"
+            [attr.aria-current]="i === 0 ? 'true' : 'false'"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div
+            class="carousel-item"
+            data-bs-interval="5000"
+            *ngFor="let work of works; let i = index"
+            [class.active]="i === 0"
+          >
+            <img
+              src="{{ work.image }}"
+              class="d-block w-100"
+              alt="{{ work.name }}"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>{{ work.name }}</h5>
+              <p>{{ work.description }}</p>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </section>
   <!-- Portfolio Section-->
   <section class="page-section portfolio" id="portfolio">
     <div class="container">
