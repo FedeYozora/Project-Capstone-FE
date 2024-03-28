@@ -8,12 +8,17 @@ import {
 } from '@angular/router';
 import { Observable, take, map } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authSrv: AuthService, private router: Router) {}
+  constructor(
+    private authSrv: AuthService,
+    private userSrv: UserService,
+    private router: Router
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -27,13 +32,21 @@ export class AuthGuard implements CanActivate {
       take(1),
       map((user) => {
         if (user) {
-          return true;
+          this.checkAdmin().subscribe((isAdmin: any) => {
+            if (isAdmin) {
+              return true;
+            } else {
+              return false;
+            }
+          });
+          return this.router.createUrlTree(['']);
         }
-        alert(
-          'Per visualizzare questa risorsa devi essere loggato!\nAccedi o registrati'
-        );
-        return this.router.createUrlTree(['/login']);
+        return this.router.createUrlTree(['']);
       })
     );
+  }
+
+  checkAdmin(): Observable<boolean> {
+    return this.userSrv.isAdmin();
   }
 }

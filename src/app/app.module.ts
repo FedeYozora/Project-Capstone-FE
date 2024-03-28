@@ -22,9 +22,9 @@ import { ImageDialogComponent } from './components/image-dialog/image-dialog.com
 import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'works', component: WorksComponent },
-  { path: 'newWork', component: NewWorkComponent },
+  { path: 'newWork', component: NewWorkComponent, canActivate: [AuthGuard] },
   {
     path: 'details/:id',
     component: WorkDetailsComponent,
@@ -32,10 +32,12 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: EditWorkComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'login',
@@ -48,8 +50,9 @@ const routes: Routes = [
   {
     path: 'profile',
     component: EditProfileComponent,
+    canActivate: [AuthGuard],
   },
-  { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({
