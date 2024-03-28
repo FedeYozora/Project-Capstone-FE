@@ -6,7 +6,7 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable, take, map } from 'rxjs';
+import { Observable, take, map, of, switchMap } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 
@@ -30,23 +30,34 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     return this.authSrv.user$.pipe(
       take(1),
-      map((user) => {
-        if (user) {
-          this.checkAdmin().subscribe((isAdmin: any) => {
+      switchMap((user) => {
+        if (!user && !(route.data['loggedIn'] || route.data['public'])) {
+          this.router.navigate(['home']);
+        }
+
+        if (!user && (route.data['loggedIn'] || route.data['public'])) {
+          return of(true);
+        }
+
+        if (route.data['public']) {
+          return of(true);
+        }
+
+        if (route.data['loggedIn']) {
+          return of(true);
+        }
+
+        return this.userSrv.isAdmin().pipe(
+          map((isAdmin) => {
             if (isAdmin) {
               return true;
-            } else {
-              return false;
             }
-          });
-          return this.router.createUrlTree(['']);
-        }
-        return this.router.createUrlTree(['']);
+
+            this.router.navigate(['home']);
+            return false;
+          })
+        );
       })
     );
-  }
-
-  checkAdmin(): Observable<boolean> {
-    return this.userSrv.isAdmin();
   }
 }

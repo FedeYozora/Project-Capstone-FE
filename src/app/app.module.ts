@@ -22,35 +22,76 @@ import { ImageDialogComponent } from './components/image-dialog/image-dialog.com
 import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'works', component: WorksComponent },
-  { path: 'newWork', component: NewWorkComponent, canActivate: [AuthGuard] },
+  {
+    path: 'home',
+    component: HomeComponent,
+    data: {
+      public: true,
+    },
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'works',
+    component: WorksComponent,
+    data: {
+      public: true,
+    },
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'newWork',
+    component: NewWorkComponent,
+    data: {
+      admin: true,
+    },
+    canActivate: [AuthGuard],
+  },
   {
     path: 'details/:id',
     component: WorkDetailsComponent,
+    data: {
+      public: true,
+    },
+    canActivate: [AuthGuard],
   },
   {
     path: 'edit/:id',
     component: EditWorkComponent,
+    data: {
+      admin: true,
+    },
     canActivate: [AuthGuard],
   },
   {
     path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuard],
+    data: {
+      admin: true,
+    },
   },
   {
     path: 'login',
     component: LoginComponent,
+    data: {
+      public: true,
+    },
+    canActivate: [AuthGuard],
   },
   {
     path: 'register',
     component: RegisterComponent,
+    data: {
+      public: true,
+    },
+    canActivate: [AuthGuard],
   },
   {
     path: 'profile',
     component: EditProfileComponent,
-    canActivate: [AuthGuard],
+    data: {
+      loggedIn: true,
+    },
   },
   { path: '**', redirectTo: 'home' },
 ];
