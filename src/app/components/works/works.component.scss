@@ -24,8 +24,7 @@
   color: #f3ebdc;
 }
 .btn {
-  border-radius: 15px;
-  // margin-top: 35px;
+  border-radius: 10px;
 }
 .card {
   border: none;
@@ -96,6 +95,15 @@ button:hover {
 
 .card-body {
   height: 150px;
+}
+
+.card-text {
+  min-width: 150px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cream {

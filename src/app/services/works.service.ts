@@ -19,6 +19,10 @@ export class WorksService {
     return this.http.get(`${this.apiUrl}/visible-comments?page=${page}`);
   }
 
+  getFeaturedWorks(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/featured`);
+  }
+
   getWork(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
