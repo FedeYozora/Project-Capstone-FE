@@ -15,6 +15,7 @@ export class EditWorkComponent implements OnInit {
     name: '',
     description: '',
     dateCreated: '',
+    featured: false,
     dateUploaded: '',
     image: '',
     worksStatus: '',

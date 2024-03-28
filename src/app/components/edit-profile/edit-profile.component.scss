@@ -7,7 +7,6 @@ h2 {
 .btn-brown {
   background-color: #512918;
   color: antiquewhite;
-  border-radius: 15px;
 }
 .btn-brown:hover {
   background-color: #79432b;
@@ -15,7 +14,6 @@ h2 {
 .btn-beige {
   background-color: #b37f52;
   color: antiquewhite;
-  border-radius: 15px;
 }
 .btn-beige:hover {
   background-color: #d19f73;
@@ -31,4 +29,7 @@ input:focus {
 
 .avatarImg {
   height: 200px;
+}
+.btn {
+  border-radius: 10px;
 }
