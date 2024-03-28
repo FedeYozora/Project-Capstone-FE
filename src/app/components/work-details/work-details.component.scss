@@ -7,3 +7,32 @@
 .card-img-top {
   max-height: 550px;
 }
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.beige-btn {
+  background-color: #b37f52;
+  color: #f3ebdc;
+}
+.beige-btn:hover {
+  background-color: #d19f73;
+  color: #f3ebdc;
+}
+
+.btn {
+  border-radius: 10px;
+}

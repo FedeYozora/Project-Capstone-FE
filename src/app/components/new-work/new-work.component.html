@@ -7,6 +7,7 @@
         type="file"
         name="image"
         id="image"
+        required
         class="form-control"
         value="{this.work.image}"
         (change)="handleImageChange($event)"
@@ -57,6 +58,29 @@
         <option value="IN_PROGRESS">WORK IN PROGRESS</option>
         <option value="COMPLETED">COMPLETED</option>
       </select>
+    </div>
+    <div class="form-check mt-3">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="featured"
+        id="featuredYes"
+        [value]="true"
+        [(ngModel)]="work.featured"
+        required
+      />
+      <label class="form-check-label" for="featuredYes"> Featured </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="featured"
+        id="featuredNo"
+        [value]="false"
+        [(ngModel)]="work.featured"
+      />
+      <label class="form-check-label" for="featuredNo"> Not Featured </label>
     </div>
     <div class="mt-3 d-flex justify-content-between">
       <button type="submit" class="btn" [disabled]="form.invalid">
