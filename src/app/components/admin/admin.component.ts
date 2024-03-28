@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WorksService } from 'src/app/services/works.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Comment } from 'src/app/models/comment';
 import { CommentsService } from 'src/app/services/comments.service';
 import { Router } from '@angular/router';
 
@@ -49,6 +50,17 @@ export class AdminComponent implements OnInit {
       this.router.navigate(['details', work.id]);
     });
   }
+
+  toggleCommentStatus(comment: Comment) {
+    if (comment.commentStatus === 'HIDDEN') {
+      comment.commentStatus = 'VISIBLE';
+    } else {
+      comment.commentStatus = 'HIDDEN';
+    }
+    console.log(comment.commentStatus);
+    this.commentsSrv.updateComment(comment.id, comment).subscribe(() => {});
+  }
+
   deleteComment(commentId: number) {
     this.commentsSrv.deleteComment(commentId).subscribe(() => {
       this.commentsSrv

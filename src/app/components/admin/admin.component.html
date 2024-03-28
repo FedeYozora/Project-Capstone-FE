@@ -24,7 +24,7 @@
         <div class="card-body rounded-top pb-0 bg-dark text-white">
           <h4 class="text-center">Works Uploaded</h4>
           <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li class="nav-item">
+            <li class="nav-item bg-white text-black">
               <span>{{ works.totalElements }}</span>
             </li>
           </ul>
@@ -46,7 +46,7 @@
         <div class="card-body rounded-top pb-0 bg-dark text-white">
           <h4 class="text-center">Total Comments</h4>
           <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li class="nav-item">
+            <li class="nav-item bg-white text-black">
               <span>{{ totalComments }}</span>
             </li>
           </ul>
@@ -63,7 +63,7 @@
   <ul class="list-group list-group-flush mt-3">
     <li class="list-group-item rounded-2 my-1" *ngFor="let comment of comments">
       <div class="row">
-        <div class="col-md-1">
+        <div class="col-md-2 col-lg-1">
           <div class="d-flex justify-content-center">
             <img
               class="profile-pic"
@@ -76,29 +76,44 @@
           </div>
         </div>
         <div class="col-md">
-          <p class="mb-3">{{ comment.content }}</p>
-          <p>Published :{{ comment.createdAt }}</p>
+          <div
+            class="d-flex flex-column justify-content-around"
+            style="display: flex; flex-direction: column; height: 100%"
+          >
+            <p>{{ comment.content }}</p>
+            <p>{{ comment.createdAt }}</p>
+          </div>
         </div>
-        <div class="col-md-1">
-          <h3>Comment Status: {{ comment.commentStatus }}</h3>
+        <div class="col-md-2 my-auto">
+          <h3 class="my-0">Comment Status: {{ comment.commentStatus }}</h3>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 my-auto">
+          <div class="d-flex justify-content-center">
+            <button
+              *ngIf="comment.commentStatus === 'HIDDEN'"
+              (click)="toggleCommentStatus(comment)"
+              class="btn btn-secondary shadow"
+            >
+              <i class="bi bi-eye-fill"></i>
+            </button>
+            <button
+              *ngIf="comment.commentStatus === 'VISIBLE'"
+              (click)="toggleCommentStatus(comment)"
+              class="btn btn-secondary shadow"
+            >
+              <i class="bi bi-eye-slash-fill"></i>
+            </button>
+          </div>
+        </div>
+        <div class="col-md-1 my-auto">
           <div class="d-flex justify-content-center">
             <button
               (click)="deleteComment(comment.id)"
-              class="btn btn-danger mt-2 shadow"
+              class="btn btn-danger shadow"
             >
               <i class="bi bi-x"></i>
             </button>
           </div>
-        </div>
-        <div class="col-md-1">
-          <button
-            (click)="getWork(comment.id)"
-            class="btn btn-primary mt-2 shadow"
-          >
-            <i class="bi bi-caret-right-fill"></i>
-          </button>
         </div>
       </div>
     </li>
