@@ -1,10 +1,16 @@
 # ProjectCapstoneFE
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
+This is a front-end project for my capstone built using Angular CLI version 14.2.13. The application can be run by executing the command ng serve in the terminal, and it will be accessible at http://localhost:4200/.
 
-## Development server
+To learn more about Angular CLI, you can use the command ng help or check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Backend Link
+
+You can access the backend project [here](https://github.com/FedeYozora/Project-Capstone-BE).
+
+## Description
+
+This is a webpage created for my uncle who is an artist specialised in sacred stained glasses, this webpage is a sort of online portfolio where he can add all his works and display them so anyone can see them, and eventually they can also add comments if they register.
 
 ## Code scaffolding
 
@@ -21,7 +27,3 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
