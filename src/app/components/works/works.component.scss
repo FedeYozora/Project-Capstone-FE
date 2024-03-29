@@ -14,7 +14,26 @@
   background-color: #79432b;
   color: #f3ebdc;
 }
-
+.orange-btn {
+  background-color: #b96a24;
+  color: #f3ebdc;
+  border-radius: 10px;
+  padding: 8px 15px;
+}
+.orange-btn:hover {
+  background-color: #f9963e;
+  color: #f3ebdc;
+}
+.light-brown-btn {
+  background-color: rgb(243 156 83);
+  color: #f3ebdc;
+  border-radius: 10px;
+  padding: 8px 15px;
+}
+.light-brown-btn:hover {
+  background-color: rgb(214, 137, 74);
+  color: #f3ebdc;
+}
 .beige-btn {
   background-color: #b37f52;
   color: #f3ebdc;
@@ -45,21 +64,6 @@ input::placeholder {
   text-align: start;
 }
 
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
 button:hover {
   background-color: #704938;
   color: #fae8d2;

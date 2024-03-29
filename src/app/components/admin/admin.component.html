@@ -1,123 +1,125 @@
-<div class="container-fluid mt-3">
-  <div class="row">
-    <div class="col-sm-12 col-lg-4 mb-4">
-      <div class="card h-100 bg-dark text-white shadow">
-        <h4 class="card-header text-center px-2">Server Status</h4>
+<div class="container-fluid">
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-sm-12 col-lg-4 mb-4">
+        <div class="card h-100 bg-dark text-white">
+          <h4 class="card-header text-center px-2">Server Status</h4>
 
-        <ul class="list-group list-group-flush">
-          <li
-            class="list-group-item d-flex justify-content-between align-items-center"
-          >
-            <input
-              class="mx-auto"
-              [(ngModel)]="serverStatus"
-              placeholder="Server Status"
-              readonly
-            />
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="col-sm-12 col-lg-4 mb-4">
-      <div class="card h-100 shadow">
-        <div class="card-body rounded-top pb-0 bg-dark text-white">
-          <h4 class="text-center">Works Uploaded</h4>
-          <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li class="nav-item bg-white text-black">
-              <span>{{ works.totalElements }}</span>
+          <ul class="list-group list-group-flush">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              <input
+                class="mx-auto"
+                [(ngModel)]="serverStatus"
+                placeholder="Server Status"
+                readonly
+              />
             </li>
           </ul>
         </div>
-
-        <div
-          class="tab-content bg-dark rounded-bottom"
-          id="contentRatingTabContent"
-        >
-          <div class="tab-pane rounded-bottom active bg-white">
-            <ul class="list-group list-group-flush"></ul>
-          </div>
-        </div>
       </div>
-    </div>
 
-    <div class="col-sm-12 col-lg-4 mb-4">
-      <div class="card h-100 shadow">
-        <div class="card-body rounded-top pb-0 bg-dark text-white">
-          <h4 class="text-center">Total Comments</h4>
-          <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li class="nav-item bg-white text-black">
-              <span>{{ totalComments }}</span>
-            </li>
-          </ul>
-        </div>
+      <div class="col-sm-12 col-lg-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body rounded pb-0 bg-dark text-white">
+            <h4 class="text-center">Works Uploaded</h4>
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li class="nav-item bg-white text-black">
+                <span>{{ works.totalElements }}</span>
+              </li>
+            </ul>
+          </div>
 
-        <div class="tab-content bg-dark rounded-bottom" id="genreTabContent">
-          <div class="tab-pane rounded-bottom active bg-white">
-            <ul class="list-group list-group-flush"></ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <ul class="list-group list-group-flush mt-3">
-    <li class="list-group-item rounded-2 my-1" *ngFor="let comment of comments">
-      <div class="row">
-        <div class="col-md-2 col-lg-1">
-          <div class="d-flex justify-content-center">
-            <img
-              class="profile-pic"
-              src="{{ comment.avatarUser }}"
-              alt="Profile picture"
-            />
-          </div>
-          <div class="d-flex justify-content-center">
-            <h4>{{ comment.author }}</h4>
-          </div>
-        </div>
-        <div class="col-md">
           <div
-            class="d-flex flex-column justify-content-around"
-            style="display: flex; flex-direction: column; height: 100%"
+            class="tab-content bg-dark rounded-bottom"
+            id="contentRatingTabContent"
           >
-            <p>{{ comment.content }}</p>
-            <p>{{ comment.createdAt }}</p>
-          </div>
-        </div>
-        <div class="col-md-2 my-auto">
-          <h3 class="my-0">Comment Status: {{ comment.commentStatus }}</h3>
-        </div>
-        <div class="col-md-2 my-auto">
-          <div class="d-flex justify-content-evenly">
-            <button
-              *ngIf="comment.commentStatus === 'HIDDEN'"
-              (click)="toggleCommentStatus(comment)"
-              class="btn btn-secondary shadow"
-            >
-              <i class="bi bi-eye-fill"></i>
-            </button>
-            <button
-              *ngIf="comment.commentStatus === 'VISIBLE'"
-              (click)="toggleCommentStatus(comment)"
-              class="btn btn-secondary shadow"
-            >
-              <i class="bi bi-eye-slash-fill"></i>
-            </button>
-            <button
-              (click)="deleteComment(comment.id)"
-              class="btn btn-danger shadow"
-            >
-              <i class="bi bi-x"></i>
-            </button>
-            <button
-              (click)="getWork(comment.id)"
-              class="btn btn-primary shadow"
-            >
-              <i class="bi bi-search"></i>
-            </button>
+            <div class="tab-pane rounded-bottom active bg-white">
+              <ul class="list-group list-group-flush"></ul>
+            </div>
           </div>
         </div>
       </div>
-    </li>
-  </ul>
+
+      <div class="col-sm-12 col-lg-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body rounded pb-0 bg-dark text-white">
+            <h4 class="text-center">Total Comments</h4>
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li class="nav-item bg-white text-black">
+                <span>{{ totalComments }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="tab-content bg-dark rounded-bottom" id="genreTabContent">
+            <div class="tab-pane rounded-bottom active bg-white">
+              <ul class="list-group list-group-flush"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="list-group list-group-flush mt-3">
+      <li
+        class="list-group-item rounded-2 my-1"
+        *ngFor="let comment of comments"
+      >
+        <div class="row">
+          <div class="col-md-2 col-lg-1">
+            <div class="d-flex justify-content-center">
+              <img
+                class="profile-pic"
+                src="{{ comment.avatarUser }}"
+                alt="Profile picture"
+              />
+            </div>
+            <div class="d-flex justify-content-center">
+              <h4>{{ comment.author }}</h4>
+            </div>
+          </div>
+          <div class="col-md">
+            <div
+              class="d-flex flex-column justify-content-around"
+              style="display: flex; flex-direction: column; height: 100%"
+            >
+              <p>{{ comment.content }}</p>
+              <p>{{ comment.createdAt }}</p>
+            </div>
+          </div>
+          <div class="col-md-2 my-auto">
+            <h3 class="my-0">Comment Status: {{ comment.commentStatus }}</h3>
+          </div>
+          <div class="col-md-2 my-auto">
+            <div class="d-flex justify-content-evenly">
+              <button
+                *ngIf="comment.commentStatus === 'HIDDEN'"
+                (click)="toggleCommentStatus(comment)"
+                class="btn btn-secondary"
+              >
+                <i class="bi bi-eye-fill"></i>
+              </button>
+              <button
+                *ngIf="comment.commentStatus === 'VISIBLE'"
+                (click)="toggleCommentStatus(comment)"
+                class="btn btn-secondary"
+              >
+                <i class="bi bi-eye-slash-fill"></i>
+              </button>
+              <button
+                (click)="deleteComment(comment.id)"
+                class="btn btn-danger"
+              >
+                <i class="bi bi-x"></i>
+              </button>
+              <button (click)="getWork(comment.id)" class="btn btn-primary">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>

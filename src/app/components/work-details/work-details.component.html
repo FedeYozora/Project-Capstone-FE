@@ -1,11 +1,4 @@
-<div
-  class="container-fluid"
-  style="
-    height: calc(100vh - 71px);
-    overflow-y: auto;
-    background-color: antiquewhite;
-  "
->
+<div class="container-fluid">
   <div class="container">
     <div class="row d-flex justify-content-center newMargin" *ngIf="work">
       <div class="col-md-5 g-4">
@@ -102,27 +95,28 @@
             <div *ngIf="userIsAdmin === true" class="col-md-2 my-auto">
               <h3 class="my-0">Comment Status: {{ comment.commentStatus }}</h3>
             </div>
-            <div class="col-md-1 my-auto" *ngIf="userIsAdmin === true">
-              <div class="d-flex justify-content-center">
+            <div class="col-md-2 my-auto">
+              <div class="d-flex justify-content-evenly">
                 <button
-                  *ngIf="comment.commentStatus === 'HIDDEN'"
+                  *ngIf="
+                    comment.commentStatus === 'HIDDEN' && userIsAdmin === true
+                  "
                   (click)="toggleCommentStatus(comment)"
                   class="btn btn-secondary shadow"
                 >
                   <i class="bi bi-eye-fill"></i>
                 </button>
                 <button
-                  *ngIf="comment.commentStatus === 'VISIBLE'"
+                  *ngIf="
+                    comment.commentStatus === 'VISIBLE' && userIsAdmin === true
+                  "
                   (click)="toggleCommentStatus(comment)"
                   class="btn btn-secondary shadow"
                 >
                   <i class="bi bi-eye-slash-fill"></i>
                 </button>
-              </div>
-            </div>
-            <div class="col-md-1 my-auto" *ngIf="userIsAdmin === true">
-              <div class="d-flex justify-content-center">
                 <button
+                  *ngIf="userIsAdmin === true"
                   (click)="deleteComment(comment.id)"
                   class="btn btn-danger shadow"
                 >

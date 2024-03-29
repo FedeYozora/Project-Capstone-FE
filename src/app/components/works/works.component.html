@@ -55,6 +55,20 @@
                 <span>{{ work.comments.length }}</span>
               </a>
               <a
+                *ngIf="work.worksStatus === 'COMPLETED'"
+                [routerLink]="['/details', work.id]"
+                class="btn light-brown-btn mb-2 me-2 shadow"
+              >
+                <span><i class="bi bi-check-circle"></i></span>
+              </a>
+              <a
+                *ngIf="work.worksStatus === 'IN_PROGRESS'"
+                [routerLink]="['/details', work.id]"
+                class="btn orange-btn mb-2 me-2 shadow"
+              >
+                <span><i class="bi bi-hourglass-split"></i></span>
+              </a>
+              <a
                 *ngIf="userIsAdmin === true"
                 [routerLink]="['/edit', work.id]"
                 class="btn beige-btn mb-2 shadow"
