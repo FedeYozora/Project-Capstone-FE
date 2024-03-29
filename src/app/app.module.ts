@@ -92,6 +92,7 @@ const routes: Routes = [
     data: {
       loggedIn: true,
     },
+    canActivate: [AuthGuard],
   },
   { path: '**', redirectTo: 'home' },
 ];

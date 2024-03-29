@@ -31,11 +31,11 @@ export class AuthGuard implements CanActivate {
     return this.authSrv.user$.pipe(
       take(1),
       switchMap((user) => {
-        if (!user && !(route.data['loggedIn'] || route.data['public'])) {
+        if (!user && !route.data['public']) {
           this.router.navigate(['home']);
         }
 
-        if (!user && (route.data['loggedIn'] || route.data['public'])) {
+        if (!user && route.data['public']) {
           return of(true);
         }
 
