@@ -41,7 +41,7 @@
             class="card-body cream d-flex flex-wrap align-content-between height pb-0"
           >
             <p class="card-text">{{ work.description }}.</p>
-            <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-end m-auto">
               <a
                 [routerLink]="['/details', work.id]"
                 class="btn brown-btn me-2 mb-2 shadow"
@@ -77,6 +77,17 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <button
+          class="btn brown-btn mb-3 shadow"
+          (click)="loadNextPage()"
+          *ngIf="hasMorePages()"
+        >
+          Load More Works
+        </button>
       </div>
     </div>
   </div>
