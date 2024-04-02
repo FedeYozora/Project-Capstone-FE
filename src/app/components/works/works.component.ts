@@ -22,7 +22,6 @@ export class WorksComponent implements OnInit {
   userIsAdmin!: boolean;
   userLoggedIn!: AuthData | null;
   page!: number;
-  size!: number;
   totalElements!: number;
   totalPages!: number;
 
@@ -50,6 +49,15 @@ export class WorksComponent implements OnInit {
     });
   }
 
+  getFirstPage(): void {
+    this.worksService.getWorks(0).subscribe((response: any) => {
+      this.works = response.content;
+      this.page = 0;
+      this.totalElements = response.totalElements;
+      this.totalPages = response.totalPages;
+    });
+  }
+
   getWorksVisibleComments(): void {
     this.worksService
       .getWorksVisibleComments(this.page)
@@ -60,16 +68,41 @@ export class WorksComponent implements OnInit {
       });
   }
 
+  getFirstPageVisibleComments(): void {
+    this.worksService.getWorksVisibleComments(0).subscribe((response: any) => {
+      this.works = response.content;
+      this.page = 0;
+      this.totalElements = response.totalElements;
+      this.totalPages = response.totalPages;
+    });
+  }
+
   searchWorks(searchValue: string): void {
     this.searchInput = searchValue.trim();
-    if (!this.searchInput) {
-      this.getWorks();
+    if (!this.searchInput && this.userIsAdmin === true) {
+      this.getFirstPage();
+      return;
+    } else if (!this.searchInput) {
+      this.getFirstPageVisibleComments();
       return;
     }
-
-    this.works = this.works.filter((work) =>
-      work.name.toLowerCase().includes(this.searchInput.toLowerCase())
-    );
+    if (this.userIsAdmin === true) {
+      this.worksService
+        .getWorksBySearchInput(this.searchInput)
+        .subscribe((response: any) => {
+          this.works = response;
+          this.totalElements = response.totalElements;
+          this.totalPages = response.totalPages;
+        });
+    } else {
+      this.worksService
+        .getWorksBySearchInputVisibleComments(this.searchInput)
+        .subscribe((response: any) => {
+          this.works = response;
+          this.totalElements = response.totalElements;
+          this.totalPages = response.totalPages;
+        });
+    }
   }
 
   loadNextPage(): void {

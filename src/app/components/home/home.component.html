@@ -115,7 +115,7 @@
       </div>
       <div class="row">
         <div class="col-lg-4 ms-auto" style="width: 100%">
-          <p class="lead pb-3">
+          <p class="lead fw-normal pb-3">
             Antonio Simonetti graduated from the Academy of Fine Arts in Naples
             , in painting , comes from a renowned family of glassmakers in
             Naples , where he acquired his familiarity in working with glass .
@@ -190,14 +190,14 @@
     </div>
   </section>
   <!-- About Section-->
-  <section class="page-section bg-beige text-white mb-0" id="about">
+  <section class="page-section mb-0" id="about">
     <div class="container">
       <!-- About Section Heading-->
-      <h2 class="page-section-heading text-center text-uppercase text-white">
+      <h2 class="page-section-heading text-center text-uppercase text-black">
         About Me
       </h2>
       <!-- Icon Divider-->
-      <div class="divider-custom divider-light">
+      <div class="divider-custom divider">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
         <div class="divider-custom-line"></div>
@@ -205,7 +205,7 @@
       <!-- About Section Content-->
       <div class="row" style="width: 100%">
         <div class="col-lg-4 ms-auto" style="width: 100%">
-          <p class="lead">
+          <p class="lead fw-normal">
             Antonio Simonetti comes from an old neapolitan family of glassmakers
             and mirrors silverer, and has continued the tradition always taking
             care of glass work, with in-depth studies at the Academy of Fine
@@ -214,13 +214,13 @@
           </p>
         </div>
         <div class="col-lg-4 me-auto" style="width: 100%">
-          <p class="lead">
+          <p class="lead fw-normal">
             Lives and works in Naples, where he has the artistic laboratory
             ARTIC49 arti&cult, located in a central street of the city.
           </p>
         </div>
         <div class="col-lg-4 me-auto" style="width: 100%">
-          <p class="lead">
+          <p class="lead fw-normal">
             Follow the tradition of medieval painting technique, and is now one
             of the few to know the secret of painting a large fire; his works
             are imported all over the world and also boasts an execution in the
@@ -228,7 +228,7 @@
           </p>
         </div>
         <div class="col-lg-4 me-auto" style="width: 100%">
-          <p class="lead">
+          <p class="lead fw-normal">
             Specializing in the restoration technique of ancient stained glass
             windows.
           </p>
@@ -236,10 +236,7 @@
       </div>
       <!-- About Section Button-->
       <div class="text-center mt-4">
-        <a
-          class="btn btn-xl btn-outline-light"
-          href="http://localhost:4200/works"
-        >
+        <a class="btn btn-primary btn-xl" href="http://localhost:4200/works">
           <i class="fa-solid fa-user-graduate me-2"></i>
           Check out my Works!
         </a>
@@ -264,7 +261,7 @@
       <!-- Contact Section Form-->
       <div class="row justify-content-center">
         <div class="col-lg-8 col-xl-7">
-          <form id="contactForm" #form="ngForm">
+          <form (ngSubmit)="sendMail()" id="contactForm" #form="ngForm">
             <div class="form-floating mb-3">
               <input
                 type="text"
@@ -273,7 +270,7 @@
                 class="form-control ps-2"
                 placeholder="Enter your name..."
                 required
-                ngModel
+                [(ngModel)]="formModel.name"
               />
               <label for="name">Full name:</label>
             </div>
@@ -285,7 +282,7 @@
                 class="form-control ps-2"
                 placeholder="name@example.com"
                 required
-                ngModel
+                [(ngModel)]="formModel.email"
               />
               <label for="email">Email address:</label>
             </div>
@@ -296,7 +293,7 @@
                 id="phone"
                 name="phone"
                 placeholder="(123) 456-7890"
-                ngModel
+                [(ngModel)]="formModel.phone"
                 required
               />
               <label for="phone">Phone number:</label>
@@ -310,19 +307,19 @@
                 placeholder="Enter your message here..."
                 style="height: 10rem"
                 required
-                ngModel
+                [(ngModel)]="formModel.message"
               >
               </textarea>
               <label for="message">Message:</label>
             </div>
             <!-- correct submission message -->
-            <div *ngIf="" id="submitSuccessMessage">
+            <div *ngIf="formSubmited === true" id="submitSuccessMessage">
               <div class="text-center mb-3">
                 <div class="fw-bolder">Form submission successful!</div>
               </div>
             </div>
             <!-- error submission message -->
-            <div *ngIf="" id="submitErrorMessage">
+            <div *ngIf="formSubmited === false" id="submitErrorMessage">
               <div class="text-center text-danger mb-3">
                 Error sending message!
               </div>
@@ -364,10 +361,11 @@
         <div class="col-lg-4 mb-5 mb-lg-0">
           <h4 class="text-uppercase mb-4">Where to Find Me</h4>
           <p class="lead mb-3">
-            For any ulterior information or to commission a work, please feel
-            free to contact me via email or come visit me in person at my
-            office/lab. I look forward to work with you!
+            For more information or to commission a work, please feel free to
+            contact me using the form, or using any of my socials belove or come
+            visit me in person at my office/lab.
           </p>
+          <p class="lead mb-3">I look forward to work with you!</p>
           <a
             class="btn btn-outline-light btn-social mx-1"
             href="https://www.facebook.com/antonio.simonetti.908"
@@ -390,7 +388,7 @@
   <!-- Copyright Section-->
   <div class="copyright py-4 text-center text-white">
     <div class="container">
-      <small>Copyright &copy; Antonio Simonetti 2023</small>
+      <small>&copy; Copyright 2024 Antonio Simonetti </small>
     </div>
   </div>
 </body>

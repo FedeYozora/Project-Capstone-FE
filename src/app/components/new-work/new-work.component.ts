@@ -23,20 +23,12 @@ export class NewWorkComponent implements OnInit {
   ngOnInit(): void {}
 
   addWork() {
-    this.playSound();
     this.workSRV.createWork(this.work).subscribe();
     this.router.navigate(['works']);
   }
 
-  playSound() {
-    const audio = new Audio();
-    audio.src = '../../../assets/write.mp3';
-    audio.load();
-    audio.play();
-  }
-
   backToHome() {
-    this.router.navigate(['']);
+    this.router.navigate(['home']);
   }
 
   handleImageChange(event: any) {

@@ -9,6 +9,13 @@ import { WorksService } from 'src/app/services/works.service';
 export class HomeComponent implements OnInit {
   constructor(private worksService: WorksService) {}
   works!: any[];
+  formModel: any = {
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  };
+  formSubmited!: boolean;
 
   ngOnInit(): void {
     this.getFeaturedWorks();
@@ -18,5 +25,10 @@ export class HomeComponent implements OnInit {
     this.worksService.getFeaturedWorks().subscribe((response: any) => {
       this.works = response;
     });
+  }
+
+  sendMail() {
+    this.worksService.sendEmail(this.formModel).subscribe();
+    this.formSubmited = true;
   }
 }

@@ -31,6 +31,18 @@ export class WorksService {
     return this.http.get(`${this.apiUrl}/comments/${id}`);
   }
 
+  getWorksBySearchInput(searchInput: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/searchByName?name=${searchInput}`);
+  }
+
+  getWorksBySearchInputVisibleComments(searchInput: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/searchByNameVC?name=${searchInput}`);
+  }
+
+  sendEmail(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/mail`, data);
+  }
+
   createWork(work: any): Observable<any> {
     const token = localStorage.getItem('user');
     let headers = new HttpHeaders();
