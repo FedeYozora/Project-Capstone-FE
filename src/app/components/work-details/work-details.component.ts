@@ -5,6 +5,7 @@ import { WorksService } from 'src/app/services/works.service';
 import { UserService } from 'src/app/services/user.service';
 import { Comment } from 'src/app/models/comment';
 import { Observable, map, of, switchMap } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-work-details',
@@ -29,7 +30,8 @@ export class WorkDetailsComponent implements OnInit {
     private workSrv: WorksService,
     private route: ActivatedRoute,
     private commentSrv: CommentsService,
-    private userSrv: UserService
+    private userSrv: UserService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -82,6 +84,11 @@ export class WorkDetailsComponent implements OnInit {
     let utente = this.userSrv.getValidUser();
     if (utente) {
       this.commentSrv.createComment(comment).subscribe(() => {
+        this.snackBar.open('Comment Posted!', 'Close', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+        });
         this.getComments(this.commentForm.workId);
       });
     }

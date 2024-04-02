@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { WorksService } from 'src/app/services/works.service';
 
 @Component({
@@ -18,12 +18,21 @@ export class NewWorkComponent implements OnInit {
     workStatus: '',
     featured: '',
   };
-  constructor(private workSRV: WorksService, private router: Router) {}
+  constructor(
+    private workSRV: WorksService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {}
 
   addWork() {
     this.workSRV.createWork(this.work).subscribe();
+    this.snackBar.open('New Work Created!', 'Close', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    });
     this.router.navigate(['works']);
   }
 

@@ -42,7 +42,7 @@ export class EditProfileComponent implements OnInit {
   onSubmit() {
     this.authSRV.updateUserInfo(this.user).subscribe(
       () => {
-        this.router.navigate(['']);
+        window.location.href = '/home';
       },
       (error) => {
         console.log(error);
